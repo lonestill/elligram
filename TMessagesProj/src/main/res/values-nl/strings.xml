@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="AppName">Telegram</string>
+    <string name="AppName">ElliGram</string>
     <string name="AppNameBeta">Telegram-bèta</string>
     <string name="LanguageName">Nederlands</string>
     <string name="English">Engels</string>
@@ -41,7 +41,7 @@
     <string name="OpenFragment">Fragment openen</string>
     <string name="SentCallCode">We bellen je op je telefoonnummer **%1$s**.\n\nNeem niet op. Telegram zal alles automatisch verwerken.</string>
     <string name="SentCallOnly">We bellen je op **%1$s** om de code te delen.</string>
-    <string name="CallText">Telegram belt je over %1$d:%2$02d min</string>
+    <string name="CallText">ElliGram belt je over %1$d:%2$02d min</string>
     <string name="SmsText">We sturen je een SMS over %1$d:%2$02d</string>
     <string name="Calling">We bellen je</string>
     <string name="SendingSms">SMS sturen...</string>
@@ -216,8 +216,8 @@
     <string name="NotificationGroupFew">%1$s heeft %3$s naar de groep %2$s gestuurd</string>
     <string name="NotificationGroupAlbum">%1$s heeft een album naar de groep %2$s gestuurd</string>
     <string name="NotificationGroupForwardedFew">%1$s heeft %3$s naar de groep %2$s doorgestuurd</string>
-    <string name="NotificationHiddenName">Telegram</string>
-    <string name="NotificationHiddenChatName">Telegram</string>
+    <string name="NotificationHiddenName">ElliGram</string>
+    <string name="NotificationHiddenChatName">ElliGram</string>
     <string name="NotificationHiddenChatUserName">Gebruiker</string>
     <string name="NotificationHiddenMessage">Nieuw bericht</string>
     <string name="Reply">Antwoorden</string>
@@ -281,7 +281,7 @@
     <string name="NotificationActionPinnedGeoLiveUser">\n%1$s zette een Live-locatie vast</string>
     <string name="NotificationActionPinnedGifUser">\n%1$s zette een GIF vast</string>
     <string name="NotificationActionPinnedMusicUser">\n%1$s zette een audiobestand vast</string>
-    <string name="SecretChatName">Telegram</string>
+    <string name="SecretChatName">ElliGram</string>
     <!--usernames-->
     <string name="Username">Gebruikersnaam</string>
     <string name="UsernameAlso">ook %1$s</string>
@@ -589,7 +589,7 @@
     <string name="DirectShareInfo">Recente chats in snel delen weergeven</string>
     <string name="Emoji">Emoji</string>
     <string name="LargeEmoji">Grote emoji</string>
-    <string name="TelegramVersion">Telegram voor Android %1$s</string>
+    <string name="TelegramVersion">ElliGram voor Android %1$s</string>
     <string name="ChangeLanguageLater">Via instellingen kun je je taal altijd aanpassen.</string>
     <string name="ChooseYourLanguage">Kies je taal</string>
     <string name="ChooseYourLanguageOther">Overige</string>
@@ -872,7 +872,7 @@
     <string name="DeleteAll">Alles verwijderen</string>
     <string name="StopLoadingTitle">Stoppen met laden?</string>
     <string name="StopLoading">Stoppen met laden?</string>
-    <string name="UpdateTelegram">Telegram bijwerken</string>
+    <string name="UpdateTelegram">ElliGram bijwerken</string>
     <string name="UpdateAppAlert">Je gebruikt een verouderde versie van Telegram, deze kan dit verzoek niet verwerken. Werk Telegram bij.</string>
     <string name="InvalidPhoneNumber">Ongeldig telefoonnummer, controleer het nummer en probeer opnieuw.</string>
     <string name="PleaseLoginPassport">Log in op Telegram om Telegram Passport te gebruiken.</string>
@@ -1026,14 +1026,14 @@
     <string name="PermissionNoAudioVideoWithHint">**Telegram** heeft toegang tot je microfoon nodig zodat je spraakberichten kunt versturen. Tik op Instellingen &gt; Machtigingen en schakel **Microfoon** aan.</string>
     <string name="PermissionNoCameraWithHint">**Telegram** heeft toegang tot je camera nodig zodat je foto\'s en video\'s kunt maken. Tik op Instellingen &gt; Machtigingen en schakel **Camera** aan.</string>
     <string name="PermissionNoCameraMicVideo">**Telegram** heeft toegang tot je camera en microfoon nodig zodat je videoberichten kunt versturen. Tik op Instellingen &gt; Machtigingen en schakel **Microfoon** en **Camera** aan.</string>
-    <string name="PermissionNoLocation">Telegram heeft toegang tot je locatie nodig om deze te kunnen delen met je vrienden.</string>
-    <string name="PermissionNoLocationStory">Telegram heeft toegang nodig tot je locatie zodat je het weerbericht in je verhalen kunt plaatsen.</string>
+    <string name="PermissionNoLocation">ElliGram heeft toegang tot je locatie nodig om deze te kunnen delen met je vrienden.</string>
+    <string name="PermissionNoLocationStory">ElliGram heeft toegang nodig tot je locatie zodat je het weerbericht in je verhalen kunt plaatsen.</string>
     <string name="PermissionNoLocationFriends">**Telegram** heeft toegang tot je locatie nodig zodat je het met vrienden kunt delen. Tik op Instellingen &gt; Machtigingen en schakel **Locatie** aan.</string>
     <string name="PermissionNoLocationNavigation">**Telegram** heeft toegang tot je locatie nodig zodat je aanwijzingen kunt krijgen. Tik op Instellingen &gt; Machtigingen en schakel **Locatie** aan.</string>
     <string name="PermissionNoContactsSharing">**Telegram** heeft toegang tot je contacten nodig zodat je die met vrienden kunt delen. Tik op Instellingen &gt; Machtigingen en schakel **Contacten** aan.</string>
     <string name="PermissionNoStorageAvatar">**Telegram** heeft toegang tot je opslag nodig zodat je profielfoto\'s s kunt uploaden. Tik op Instellingen &gt; Machtigingen en schakel **Bestanden en media** in.</string>
     <string name="PermissionNoAudioStorageStory">**Telegram** heeft toegang tot je muziekbestanden nodig om ze aan je verhaal toe te voegen. Tik op Instellingen &gt; Machtigingen en schakel **Muziek en geluid** in.</string>
-    <string name="PermissionDrawAboveOtherApps">Telegram heeft de toestemming \'over andere apps tekenen\' nodig om video\'s af te spelen in beeld-in-beeld-modus.</string>
+    <string name="PermissionDrawAboveOtherApps">ElliGram heeft de toestemming \'over andere apps tekenen\' nodig om video\'s af te spelen in beeld-in-beeld-modus.</string>
     <string name="PermissionDrawAboveOtherAppsGroupCall">Met overlay-modus  kun je Push-To-Talk gebruiken en zien wie er aan het praten is zelfs als je Telegram niet in de voorgrond hebt.</string>
     <string name="PermissionOpenSettings">Instellingen</string>
     <string name="PermissionXiaomiLockscreen">Sta Telegram toe om weer te kunnen geven op het vergrendelscherm om ervoor te zorgen dat oproepen goed werken.</string>

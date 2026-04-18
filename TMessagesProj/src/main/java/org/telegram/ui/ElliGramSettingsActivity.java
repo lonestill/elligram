@@ -2,25 +2,29 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.ActionBar;
-import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.messenger.browser.Browser;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.TextCheckCell;
-import org.telegram.ui.Cells.TextInfoPrivacyCell;
-import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.BackupImageView;
+import org.telegram.ui.Components.UItem;
+import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.Components.UniversalFragment;
+import org.telegram.ui.SettingsActivity.SettingCell;
 
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import java.util.ArrayList;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-public class ElliGramSettingsActivity extends BaseFragment {
+public class ElliGramSettingsActivity extends UniversalFragment {
 
     private static final String PREFS = "elligram_settings";
 
@@ -28,16 +32,20 @@ public class ElliGramSettingsActivity extends BaseFragment {
     public static final String KEY_NO_SPONSORED     = "no_sponsored";
     public static final String KEY_CONFIRM_DELETE   = "confirm_delete";
     public static final String KEY_DISABLE_STORIES  = "disable_stories";
+    public static final String KEY_NO_TYPING        = "no_typing";
+    public static final String KEY_MARK_READ        = "mark_read";
 
-    private RecyclerListView listView;
-    private Adapter adapter;
+    // Item IDs
+    private static final int ID_GENERAL    = 1;
+    private static final int ID_APPEARANCE = 2;
+    private static final int ID_CHATS      = 3;
+    private static final int ID_PRIVACY    = 4;
+    private static final int ID_AUTOMATION = 5;
+    private static final int ID_STATS      = 6;
+    private static final int ID_CHANNEL    = 10;
+    private static final int ID_CHAT       = 11;
 
-    private static final int ROW_GHOST          = 0;
-    private static final int ROW_NO_SPONSORED   = 1;
-    private static final int ROW_CONFIRM_DELETE = 2;
-    private static final int ROW_STORIES        = 3;
-    private static final int ROW_INFO           = 4;
-    private static final int ROW_COUNT          = 5;
+    private LinearLayout topView;
 
     public static SharedPreferences prefs() {
         return ApplicationLoader.applicationContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
@@ -48,102 +56,104 @@ public class ElliGramSettingsActivity extends BaseFragment {
     }
 
     @Override
-    public View createView(Context context) {
-        actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        actionBar.setTitle("ElliGram");
-        actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
-            @Override
-            public void onItemClick(int id) {
-                if (id == -1) finishFragment();
-            }
-        });
-
-        FrameLayout frameLayout = new FrameLayout(context);
-        fragmentView = frameLayout;
-
-        listView = new RecyclerListView(context);
-        listView.setLayoutManager(new LinearLayoutManager(context));
-        listView.setAdapter(adapter = new Adapter(context));
-        listView.setOnItemClickListener((view, position) -> {
-            if (view instanceof TextCheckCell) {
-                TextCheckCell cell = (TextCheckCell) view;
-                String key = keyForRow(position);
-                if (key == null) return;
-                boolean newVal = !isEnabled(key);
-                prefs().edit().putBoolean(key, newVal).apply();
-                cell.setChecked(newVal);
-            }
-        });
-
-        frameLayout.addView(listView);
-        return fragmentView;
+    protected CharSequence getTitle() {
+        return "";
     }
 
-    private String keyForRow(int position) {
-        switch (position) {
-            case ROW_GHOST:          return KEY_GHOST_MODE;
-            case ROW_NO_SPONSORED:   return KEY_NO_SPONSORED;
-            case ROW_CONFIRM_DELETE: return KEY_CONFIRM_DELETE;
-            case ROW_STORIES:        return KEY_DISABLE_STORIES;
-            default: return null;
+    private LinearLayout buildTopView(Context context) {
+        LinearLayout layout = new LinearLayout(context);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setGravity(Gravity.CENTER_HORIZONTAL);
+        layout.setPadding(0, AndroidUtilities.dp(24), 0, AndroidUtilities.dp(16));
+
+        // App icon (rounded square with gradient)
+        ImageView icon = new ImageView(context);
+        icon.setImageResource(R.mipmap.icon_2_launcher);
+        icon.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        android.graphics.drawable.GradientDrawable bg = new android.graphics.drawable.GradientDrawable(
+            android.graphics.drawable.GradientDrawable.Orientation.TL_BR,
+            new int[]{0xFF5CA7E4, 0xFF3D8BFF}
+        );
+        bg.setCornerRadius(AndroidUtilities.dp(22));
+        icon.setBackground(bg);
+        icon.setClipToOutline(true);
+        layout.addView(icon, AndroidUtilities.dp(80), AndroidUtilities.dp(80));
+
+        // App name
+        TextView name = new TextView(context);
+        name.setText("ElliGram");
+        name.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
+        name.setTypeface(AndroidUtilities.bold());
+        name.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+        name.setGravity(Gravity.CENTER);
+        LinearLayout.LayoutParams nameLp = new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        nameLp.topMargin = AndroidUtilities.dp(12);
+        layout.addView(name, nameLp);
+
+        // Version
+        TextView version = new TextView(context);
+        version.setText(BuildVars.BUILD_VERSION_STRING);
+        version.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13);
+        version.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
+        version.setGravity(Gravity.CENTER);
+        LinearLayout.LayoutParams vLp = new LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        vLp.topMargin = AndroidUtilities.dp(4);
+        layout.addView(version, vLp);
+
+        return layout;
+    }
+
+    @Override
+    protected void fillItems(ArrayList<UItem> items, UniversalAdapter adapter) {
+        if (topView == null) {
+            topView = buildTopView(getContext());
+        }
+        items.add(UItem.asCustomShadow(topView));
+        items.add(UItem.asShadow(null));
+
+        items.add(UItem.asHeader("Categories"));
+        items.add(SettingCell.Factory.of(ID_GENERAL,    0xFF3D8BFF, 0xFF2462D4, R.drawable.settings_chat,     "General",    "Ghost mode, sponsored msgs..."));
+        items.add(SettingCell.Factory.of(ID_APPEARANCE, 0xFFB659FF, 0xFF617CFF, R.drawable.settings_premium,  "Appearance", "Coming soon \uD83D\uDE80"));
+        items.add(SettingCell.Factory.of(ID_CHATS,      0xFF4CAF50, 0xFF388E3C, R.drawable.settings_folders,  "Chats",      "Coming soon \uD83D\uDE80"));
+        items.add(SettingCell.Factory.of(ID_PRIVACY,    0xFFFF6B35, 0xFFE53935, R.drawable.settings_privacy,  "Privacy",    "Duress mode, fake last seen..."));
+        items.add(SettingCell.Factory.of(ID_AUTOMATION, 0xFFFF9800, 0xFFF57C00, R.drawable.settings_language, "Automation", "Coming soon \uD83D\uDE80"));
+        items.add(SettingCell.Factory.of(ID_STATS,      0xFF00BCD4, 0xFF0097A7, R.drawable.settings_data,     "Statistics", "Coming soon \uD83D\uDE80"));
+        items.add(UItem.asShadow(null));
+
+        items.add(UItem.asHeader("Links"));
+        items.add(SettingCell.Factory.of(ID_CHANNEL, 0xFF5CA7E4, 0xFF3D8BFF, R.drawable.settings_sounds, "Channel", "@gittyblog"));
+        items.add(SettingCell.Factory.of(ID_CHAT,    0xFF5CA7E4, 0xFF3D8BFF, R.drawable.settings_ask,    "Chat",    "@gittyblog"));
+        items.add(UItem.asShadow(null));
+    }
+
+    @Override
+    protected void onClick(UItem item, View view, int position, float x, float y) {
+        switch (item.id) {
+            case ID_GENERAL:
+                presentFragment(new ElliGramGeneralSettingsActivity());
+                break;
+            case ID_APPEARANCE:
+            case ID_CHATS:
+            case ID_PRIVACY:
+            case ID_AUTOMATION:
+            case ID_STATS:
+                android.widget.Toast.makeText(getParentActivity(), item.text + " \u2014 coming soon \uD83D\uDE80", android.widget.Toast.LENGTH_SHORT).show();
+                break;
+            case ID_CHANNEL:
+            case ID_CHAT:
+                Browser.openUrl(getParentActivity(), "https://t.me/gittyblog");
+                break;
         }
     }
 
-    private class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-        private static final int TYPE_CHECK = 0;
-        private static final int TYPE_INFO  = 1;
-
-        private final Context context;
-
-        Adapter(Context context) {
-            this.context = context;
-        }
-
-        @Override
-        public int getItemViewType(int position) {
-            return position == ROW_INFO ? TYPE_INFO : TYPE_CHECK;
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view;
-            if (viewType == TYPE_INFO) {
-                view = new TextInfoPrivacyCell(context);
-                view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-            } else {
-                view = new TextCheckCell(context);
-                view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-            }
-            return new RecyclerListView.Holder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            if (holder.itemView instanceof TextCheckCell) {
-                TextCheckCell cell = (TextCheckCell) holder.itemView;
-                switch (position) {
-                    case ROW_GHOST:
-                        cell.setTextAndValueAndCheck("Ghost Mode", "Read messages without sending read receipts", isEnabled(KEY_GHOST_MODE), true, true);
-                        break;
-                    case ROW_NO_SPONSORED:
-                        cell.setTextAndValueAndCheck("Hide Sponsored Messages", "Remove all sponsored messages from channels", isEnabled(KEY_NO_SPONSORED), true, true);
-                        break;
-                    case ROW_CONFIRM_DELETE:
-                        cell.setTextAndValueAndCheck("Confirm Before Delete", "Always ask before deleting messages", isEnabled(KEY_CONFIRM_DELETE), true, true);
-                        break;
-                    case ROW_STORIES:
-                        cell.setTextAndValueAndCheck("Hide Stories Bar", "Remove stories bar from the chat list", isEnabled(KEY_DISABLE_STORIES), true, true);
-                        break;
-                }
-            } else if (holder.itemView instanceof TextInfoPrivacyCell) {
-                ((TextInfoPrivacyCell) holder.itemView).setText("ElliGram v" + org.telegram.messenger.BuildVars.BUILD_VERSION_STRING);
-            }
-        }
-
-        @Override
-        public int getItemCount() {
-            return ROW_COUNT;
-        }
+    @Override
+    protected boolean onLongClick(UItem item, View view, int position, float x, float y) {
+        return false;
     }
 }

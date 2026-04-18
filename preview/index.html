@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ElliGram Settings Preview</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #1a1a2e;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+    font-family: 'Roboto', sans-serif;
+  }
+  .phone {
+    width: 360px;
+    background: #212121;
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    border: 2px solid #333;
+  }
+  .status-bar {
+    background: #212121;
+    padding: 12px 20px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .action-bar {
+    background: #212121;
+    padding: 8px 16px 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .back-btn { color: #5ca7e4; font-size: 22px; cursor: pointer; }
+  .action-bar-title { color: white; font-size: 18px; font-weight: 500; }
+  .screen {
+    background: #1c1c1e;
+    min-height: 700px;
+    overflow-y: auto;
+  }
+
+  /* Top block */
+  .top-block {
+    background: #212121;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 0 20px;
+    margin-bottom: 8px;
+  }
+  .app-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #5ca7e4, #3d8bff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    margin-bottom: 12px;
+    box-shadow: 0 8px 24px rgba(61,139,255,0.4);
+  }
+  .app-name {
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+  .app-version {
+    color: #888;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  /* Section */
+  .section { margin-bottom: 8px; }
+  .section-header {
+    color: #5ca7e4;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 12px 16px 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .section-card {
+    background: #212121;
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  /* Category cell */
+  .cat-cell {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid #2a2a2a;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .cat-cell:last-child { border-bottom: none; }
+  .cat-cell:active { background: #2a2a2a; }
+  .cat-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-right: 14px;
+    flex-shrink: 0;
+  }
+  .cat-label { color: white; font-size: 16px; flex: 1; }
+  .cat-arrow { color: #555; font-size: 16px; }
+
+  /* Link cell */
+  .link-cell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid #2a2a2a;
+    cursor: pointer;
+  }
+  .link-cell:last-child { border-bottom: none; }
+  .link-left { display: flex; align-items: center; gap: 14px; }
+  .link-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: #2a3a4a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .link-label { color: white; font-size: 16px; }
+  .link-value { color: #5ca7e4; font-size: 14px; }
+
+  /* General settings screen */
+  .screen2 { display: none; }
+  .check-cell {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid #2a2a2a;
+    background: #212121;
+  }
+  .check-cell:last-child { border-bottom: none; }
+  .check-text { flex: 1; }
+  .check-title { color: white; font-size: 15px; }
+  .check-subtitle { color: #888; font-size: 12px; margin-top: 2px; }
+  .toggle {
+    width: 44px;
+    height: 24px;
+    border-radius: 12px;
+    background: #555;
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+  .toggle.on { background: #5ca7e4; }
+  .toggle::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    top: 2px;
+    left: 2px;
+    transition: left 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+  .toggle.on::after { left: 22px; }
+
+  /* Category colors */
+  .icon-general    { background: #1a3a5c; }
+  .icon-appearance { background: #3a1a5c; }
+  .icon-chats      { background: #1a5c3a; }
+  .icon-privacy    { background: #5c3a1a; }
+  .icon-automation { background: #5c1a3a; }
+  .icon-stats      { background: #1a5c5c; }
+
+  .nav-tabs {
+    display: flex;
+    background: #1a1a1a;
+    border-top: 1px solid #333;
+  }
+  .nav-tab {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    color: #666;
+    font-size: 10px;
+    cursor: pointer;
+  }
+  .nav-tab.active { color: #5ca7e4; }
+  .nav-tab-icon { font-size: 20px; margin-bottom: 2px; }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="status-bar">
+    <span>11:15</span>
+    <span>📶 🔋</span>
+  </div>
+
+  <!-- SCREEN 1: Main Settings -->
+  <div id="screen1">
+    <div class="action-bar">
+      <span class="back-btn">←</span>
+      <span class="action-bar-title">ElliGram</span>
+    </div>
+    <div class="screen">
+
+      <!-- Top block -->
+      <div class="top-block">
+        <div class="app-icon">✈️</div>
+        <div class="app-name">ElliGram</div>
+        <div class="app-version">12.6.4 (66660)</div>
+      </div>
+
+      <!-- Categories -->
+      <div class="section">
+        <div class="section-header">Categories</div>
+        <div class="section-card">
+          <div class="cat-cell" onclick="showScreen2()">
+            <div class="cat-icon icon-general">⚙️</div>
+            <span class="cat-label">General</span>
+            <span class="cat-arrow">›</span>
+          </div>
+          <div class="cat-cell">
+            <div class="cat-icon icon-appearance">🎨</div>
+            <span class="cat-label">Appearance</span>
+            <span class="cat-arrow" style="color:#5ca7e4;font-size:11px">soon</span>
+          </div>
+          <div class="cat-cell">
+            <div class="cat-icon icon-chats">💬</div>
+            <span class="cat-label">Chats</span>
+            <span class="cat-arrow" style="color:#5ca7e4;font-size:11px">soon</span>
+          </div>
+          <div class="cat-cell">
+            <div class="cat-icon icon-privacy">🔒</div>
+            <span class="cat-label">Privacy</span>
+            <span class="cat-arrow" style="color:#5ca7e4;font-size:11px">soon</span>
+          </div>
+          <div class="cat-cell">
+            <div class="cat-icon icon-automation">🤖</div>
+            <span class="cat-label">Automation</span>
+            <span class="cat-arrow" style="color:#5ca7e4;font-size:11px">soon</span>
+          </div>
+          <div class="cat-cell">
+            <div class="cat-icon icon-stats">📊</div>
+            <span class="cat-label">Statistics</span>
+            <span class="cat-arrow" style="color:#5ca7e4;font-size:11px">soon</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div class="section">
+        <div class="section-header">Links</div>
+        <div class="section-card">
+          <div class="link-cell">
+            <div class="link-left">
+              <div class="link-icon">📢</div>
+              <span class="link-label">Channel</span>
+            </div>
+            <span class="link-value">@gittyblog</span>
+          </div>
+          <div class="link-cell">
+            <div class="link-left">
+              <div class="link-icon">👥</div>
+              <span class="link-label">Chat</span>
+            </div>
+            <span class="link-value">@gittyblog</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SCREEN 2: General Settings -->
+  <div id="screen2" style="display:none">
+    <div class="action-bar">
+      <span class="back-btn" onclick="showScreen1()">←</span>
+      <span class="action-bar-title">General</span>
+    </div>
+    <div class="screen">
+      <div class="section-header">Stealth</div>
+      <div class="check-cell">
+        <div class="check-text">
+          <div class="check-title">Ghost Mode</div>
+          <div class="check-subtitle">No read receipts + no typing status</div>
+        </div>
+        <div class="toggle" onclick="this.classList.toggle('on')"></div>
+      </div>
+      <div class="check-cell">
+        <div class="check-text">
+          <div class="check-title">Hide Typing Status</div>
+          <div class="check-subtitle">Others won't see when you type</div>
+        </div>
+        <div class="toggle" onclick="this.classList.toggle('on')"></div>
+      </div>
+      <div class="check-cell" style="margin-bottom:8px">
+        <div class="check-text">
+          <div class="check-title">No Read Receipts</div>
+          <div class="check-subtitle">Read without sending blue ticks</div>
+        </div>
+        <div class="toggle" onclick="this.classList.toggle('on')"></div>
+      </div>
+
+      <div class="section-header">Chats</div>
+      <div class="check-cell">
+        <div class="check-text">
+          <div class="check-title">Hide Sponsored Messages</div>
+          <div class="check-subtitle">Remove ads from channels</div>
+        </div>
+        <div class="toggle" onclick="this.classList.toggle('on')"></div>
+      </div>
+      <div class="check-cell">
+        <div class="check-text">
+          <div class="check-title">Confirm Before Delete</div>
+          <div class="check-subtitle">Ask before deleting messages</div>
+        </div>
+        <div class="toggle" onclick="this.classList.toggle('on')"></div>
+      </div>
+      <div class="check-cell">
+        <div class="check-text">
+          <div class="check-title">Hide Stories Bar</div>
+          <div class="check-subtitle">Remove stories from chat list</div>
+        </div>
+        <div class="toggle" onclick="this.classList.toggle('on')"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-tabs">
+    <div class="nav-tab"><div class="nav-tab-icon">💬</div>Chats</div>
+    <div class="nav-tab"><div class="nav-tab-icon">📞</div>Calls</div>
+    <div class="nav-tab"><div class="nav-tab-icon">👥</div>People</div>
+    <div class="nav-tab active"><div class="nav-tab-icon">⚙️</div>Settings</div>
+  </div>
+</div>
+
+<script>
+  function showScreen2() {
+    document.getElementById('screen1').style.display = 'none';
+    document.getElementById('screen2').style.display = 'block';
+  }
+  function showScreen1() {
+    document.getElementById('screen2').style.display = 'none';
+    document.getElementById('screen1').style.display = 'block';
+  }
+</script>
+</body>
+</html>

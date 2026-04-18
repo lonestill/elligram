@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="AppName">Telegram</string>
-    <string name="AppNameBeta">Telegram Beta</string>
+    <string name="AppName">ElliGram</string>
+    <string name="AppNameBeta">ElliGram Beta</string>
     <string name="LanguageName">Italiano</string>
     <string name="English">Inglese</string>
     <string name="LanguageNameInEnglish">Italian</string>
@@ -41,7 +41,7 @@
     <string name="OpenFragment">Apri Fragment</string>
     <string name="SentCallCode">Stiamo chiamando il tuo numero **%1$s**.\n\nNon rispondere alla chiamata. Telegram farà tutto in automatico.</string>
     <string name="SentCallOnly">Chiameremo il tuo numero **%1$s** per dettarti il codice.</string>
-    <string name="CallText">Telegram ti chiamerà tra %1$d:%2$02d</string>
+    <string name="CallText">ElliGram ti chiamerà tra %1$d:%2$02d</string>
     <string name="SmsText">Ti invieremo un SMS tra %1$d:%2$02d</string>
     <string name="Calling">Ti stiamo chiamando...</string>
     <string name="SendingSms">Invio SMS...</string>
@@ -216,8 +216,8 @@
     <string name="NotificationGroupFew">%1$s ha inviato %3$s nel gruppo %2$s</string>
     <string name="NotificationGroupAlbum">%1$s ha inviato un album nel gruppo %2$s</string>
     <string name="NotificationGroupForwardedFew">%1$s ha inoltrato %3$s nel gruppo %2$s</string>
-    <string name="NotificationHiddenName">Telegram</string>
-    <string name="NotificationHiddenChatName">Telegram</string>
+    <string name="NotificationHiddenName">ElliGram</string>
+    <string name="NotificationHiddenChatName">ElliGram</string>
     <string name="NotificationHiddenChatUserName">Utente</string>
     <string name="NotificationHiddenMessage">Nuovo messaggio</string>
     <string name="Reply">Rispondi</string>
@@ -281,7 +281,7 @@
     <string name="NotificationActionPinnedGeoLiveUser">%1$s ha fissato una posizione in tempo reale</string>
     <string name="NotificationActionPinnedGifUser">%1$s ha fissato una GIF</string>
     <string name="NotificationActionPinnedMusicUser">%1$s ha fissato un file audio</string>
-    <string name="SecretChatName">Telegram</string>
+    <string name="SecretChatName">ElliGram</string>
     <!--usernames-->
     <string name="Username">Username</string>
     <string name="UsernameAlso">e %1$s</string>
@@ -588,7 +588,7 @@
     <string name="DirectShareInfo">Mostra le chat recenti nel menu di condivisione</string>
     <string name="Emoji">Emoji</string>
     <string name="LargeEmoji">Emoji grandi</string>
-    <string name="TelegramVersion">Telegram per Android %1$s</string>
+    <string name="TelegramVersion">ElliGram per Android %1$s</string>
     <string name="DebugMenu">Menu debug</string>
     <string name="DebugMenuLongPress">Tieni premuto di nuovo per il menu di debug</string>
     <string name="DebugSendLogs">Invia i log</string>
@@ -1479,14 +1479,14 @@
     <string name="PermissionNoAudioVideoWithHint">**Telegram** deve accedere al microfono per poter inviare messaggi vocali. Tocca Impostazioni &gt; Permessi, e attiva **Microfono**.</string>
     <string name="PermissionNoCameraWithHint">**Telegram** deve accedere alla fotocamera per poter scattare foto e video. Tocca Impostazioni &gt; Permessi, e attiva **Fotocamera**.</string>
     <string name="PermissionNoCameraMicVideo">**Telegram** deve accedere alla fotocamera e al microfono per poter inviare videomessaggi. Tocca Impostazioni &gt; Permessi, e attiva **Microfono** e **Fotocamera**.</string>
-    <string name="PermissionNoLocation">Telegram deve accedere alla tua posizione perché tu possa condividerla con i tuoi amici.</string>
-    <string name="PermissionNoLocationStory">Telegram deve accedere alla tua posizione perché tu possa aggiungere il widget meteo alle tue storie.</string>
+    <string name="PermissionNoLocation">ElliGram deve accedere alla tua posizione perché tu possa condividerla con i tuoi amici.</string>
+    <string name="PermissionNoLocationStory">ElliGram deve accedere alla tua posizione perché tu possa aggiungere il widget meteo alle tue storie.</string>
     <string name="PermissionNoLocationFriends">**Telegram** deve accedere alla posizione perché tu possa condividerla con i tuoi amici. Tocca Impostazioni &gt; Permessi, e attiva **Posizione**.</string>
     <string name="PermissionNoLocationNavigation">**Telegram** deve accedere alla posizione per poter ottenere le indicazioni. Tocca Impostazioni &gt; Permessi, e attiva **Posizione**.</string>
     <string name="PermissionNoContactsSharing">**Telegram** deve accedere ai contatti perché tu possa condividerli con i tuoi amici. Tocca Impostazioni &gt; Permessi, e attiva **Contatti**.</string>
     <string name="PermissionNoStorageAvatar">**Telegram** deve accedere all\'archivio per poter caricare foto del profilo. Tocca Impostazioni &gt; Permessi, e attiva **File e media**.</string>
     <string name="PermissionNoAudioStorageStory">**Telegram** deve accedere ai tuoi file musicali per aggiungerli alla tua storia. Tocca Impostazioni &gt; Permessi, e attiva **Musica e audio**.</string>
-    <string name="PermissionDrawAboveOtherApps">Telegram deve accedere allo spostamento su altre app per riprodurre i video in modalità Picture-in-Picture.</string>
+    <string name="PermissionDrawAboveOtherApps">ElliGram deve accedere allo spostamento su altre app per riprodurre i video in modalità Picture-in-Picture.</string>
     <string name="PermissionDrawAboveOtherAppsGroupCall">La modalità overlay ti consente di usare il push-to-talk e vedere chi sta parlando anche quando sei fuori da Telegram.</string>
     <string name="PermissionOpenSettings">Impostazioni</string>
     <string name="PermissionXiaomiLockscreen">Consenti a Telegram di apparire sulla schermata di blocco in modo che le chiamate possano funzionare correttamente.</string>

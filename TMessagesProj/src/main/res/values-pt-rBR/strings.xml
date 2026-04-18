@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="AppName">Telegram</string>
-    <string name="AppNameBeta">Telegram Beta</string>
+    <string name="AppName">ElliGram</string>
+    <string name="AppNameBeta">ElliGram Beta</string>
     <string name="LanguageName">Português (Brasil)</string>
     <string name="English">Inglês</string>
     <string name="LanguageNameInEnglish">Portuguese (Brazil)</string>
@@ -180,8 +180,8 @@
     <string name="NotificationGroupFew">%1$s enviou %3$s ao grupo %2$s</string>
     <string name="NotificationGroupAlbum">%1$s enviou um álbum para o grupo %2$s</string>
     <string name="NotificationGroupForwardedFew">%1$s encaminhou %3$s ao grupo %2$s</string>
-    <string name="NotificationHiddenName">Telegram</string>
-    <string name="NotificationHiddenChatName">Telegram</string>
+    <string name="NotificationHiddenName">ElliGram</string>
+    <string name="NotificationHiddenChatName">ElliGram</string>
     <string name="NotificationHiddenChatUserName">Usuário</string>
     <string name="NotificationHiddenMessage">Nova mensagem</string>
     <string name="Reply">Responder</string>
@@ -245,7 +245,7 @@
     <string name="NotificationActionPinnedGeoLiveUser">%1$s fixou uma localização ao vivo</string>
     <string name="NotificationActionPinnedGifUser">%1$s fixou um GIF</string>
     <string name="NotificationActionPinnedMusicUser">%1$s fixou um arquivo de áudio</string>
-    <string name="SecretChatName">Telegram</string>
+    <string name="SecretChatName">ElliGram</string>
     <!--contacts view-->
     <string name="SelectContact">Selecione um Contato</string>
     <string name="ShareContactTitle">Compartilhar Contato</string>
@@ -576,7 +576,7 @@
     <string name="DirectShareInfo">Mostra chats recentes no menu compartilhar.</string>
     <string name="Emoji">Emoji</string>
     <string name="LargeEmoji">Emoji Grande</string>
-    <string name="TelegramVersion">Telegram para Android %1$s</string>
+    <string name="TelegramVersion">ElliGram para Android %1$s</string>
     <string name="DebugMenu">Menu de Depuração</string>
     <string name="DebugMenuLongPress">Segure de novo para ver o menu de depuração</string>
     <string name="DebugSendLogs">Enviar Logs</string>
@@ -1177,7 +1177,7 @@
     <string name="PermissionNoAudioVideoWithHint">O **Telegram** precisa de acesso ao seu microfone para você enviar mensagens de voz. Toque em Configurações &gt; Permissões, e ative **Microfone**.</string>
     <string name="PermissionNoCameraWithHint">O **Telegram** precisa de acesso à câmera para tirar fotos e gravar vídeos. Toque em Configurações &gt; Permissões, e ative **Câmera**.</string>
     <string name="PermissionNoCameraMicVideo">O **Telegram** precisa de acesso ao seu microfone e à câmera para enviar mensagens de vídeo. Toque em Configurações &gt; Permissões, e ative **Microfone** e **Câmera**.</string>
-    <string name="PermissionNoLocation">Telegram precisa acessar sua localização para que você possa compartilhar com seus amigos.</string>
+    <string name="PermissionNoLocation">ElliGram precisa acessar sua localização para que você possa compartilhar com seus amigos.</string>
     <string name="PermissionNoLocationStory">O Telegram precisa acessar sua localização para você poder adicionar o widget de tempo aos seus stories.</string>
     <string name="PermissionNoLocationFriends">O **Telegram** precisa acessar a localização para você compartilhar com seus amigos. Toque em Configurações &gt; Permissões e ative **Localização**.</string>
     <string name="PermissionNoLocationNavigation">O **Telegram** precisa acessar a sua localização para você obter direções. Toque em Configurações &gt; Permissões e ative **Localização**.</string>
@@ -1192,7 +1192,7 @@
     <string name="PermissionDrawAboveOtherAppsTitle">Picture-in-Picture</string>
     <string name="PermissionDrawAboveOtherAppsGroupCallTitle">Chat de vídeo flutuante</string>
     <!--Intro view-->
-    <string name="Page1Title">Telegram</string>
+    <string name="Page1Title">ElliGram</string>
     <string name="Page2Title">Rápido</string>
     <string name="Page3Title">Gratuito</string>
     <string name="Page4Title">Seguro</string>
