@@ -34,11 +34,14 @@ jobs:
           key: gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: gradle-
 
+      - name: Restore keystore
+        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > elligram.keystore
+
       - name: Make gradlew executable
         run: chmod +x gradlew
 
       - name: Build ARM64 Release
-        run: ./gradlew :TMessagesProj_App:assembleArm64Release
+        run: ./gradlew :TMessagesProj_App:assembleArm64Release -PRELEASE_STORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }} -PRELEASE_KEY_ALIAS=${{ secrets.KEY_ALIAS }} -PRELEASE_KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}
 
       - name: Get version
         id: version

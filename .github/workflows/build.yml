@@ -26,6 +26,9 @@ jobs:
       - name: Install NDK
         run: echo "y" | sdkmanager "ndk;21.4.7075529" --sdk_root=$ANDROID_SDK_ROOT
 
+      - name: Restore keystore
+        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > elligram.keystore
+
       - name: Cache Gradle
         uses: actions/cache@v4
         with:
@@ -39,7 +42,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build ARM64 Release
-        run: ./gradlew :TMessagesProj_App:assembleArm64Release
+        run: ./gradlew :TMessagesProj_App:assembleArm64Release -PRELEASE_STORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }} -PRELEASE_KEY_ALIAS=${{ secrets.KEY_ALIAS }} -PRELEASE_KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
