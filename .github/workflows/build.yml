@@ -42,7 +42,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build ARM64 Release
-        run: ./gradlew :TMessagesProj_App:assembleArm64Release -PRELEASE_STORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }} -PRELEASE_KEY_ALIAS=${{ secrets.KEY_ALIAS }} -PRELEASE_KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}
+        run: ./gradlew :TMessagesProj_App:assembleArm64Release -PRELEASE_STORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }} -PRELEASE_KEY_ALIAS=elligram -PRELEASE_KEY_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }}
 
       - name: Upload APK
         uses: actions/upload-artifact@v4

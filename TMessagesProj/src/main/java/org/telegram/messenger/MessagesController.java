@@ -11006,10 +11006,6 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public boolean sendTyping(long dialogId, long threadMsgId, int action, String emojicon, int classGuid) {
-        if (org.telegram.ui.ElliGramSettingsActivity.isEnabled(org.telegram.ui.ElliGramSettingsActivity.KEY_NO_TYPING) ||
-            org.telegram.ui.ElliGramSettingsActivity.isEnabled(org.telegram.ui.ElliGramSettingsActivity.KEY_GHOST_MODE)) {
-            return false;
-        }
         if (action < 0 || action >= sendingTypings.length || dialogId == 0) {
             return false;
         }
