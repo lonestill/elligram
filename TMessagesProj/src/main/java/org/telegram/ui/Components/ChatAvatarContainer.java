@@ -1240,7 +1240,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         if (ChatObject.isChannel(chat)) {
             if (info != null && info.participants_count != 0) {
                 if (chat.megagroup) {
-                    if (onlineCount > 1) {
+                    if (onlineCount > 1 && org.telegram.messenger.ElliGramConfig.showOnlineCount()) {
                         newSubtitle = String.format("%s, %s", LocaleController.formatPluralString("Members", info.participants_count), LocaleController.formatPluralString("OnlineCount", Math.min(onlineCount, info.participants_count)));
                     } else {
                         newSubtitle = LocaleController.formatPluralString("Members", info.participants_count);
@@ -1286,7 +1286,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                 if (info != null && info.participants != null) {
                     count = info.participants.participants.size();
                 }
-                if (onlineCount > 1 && count != 0) {
+                if (onlineCount > 1 && count != 0 && org.telegram.messenger.ElliGramConfig.showOnlineCount()) {
                     newSubtitle = String.format("%s, %s", LocaleController.formatPluralString("Members", count), LocaleController.formatPluralString("OnlineCount", onlineCount));
                 } else {
                     newSubtitle = LocaleController.formatPluralString("Members", count);

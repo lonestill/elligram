@@ -209,10 +209,14 @@ public class ElliGramSettingsActivity extends BaseFragment {
         subLp.topMargin = dp(2);
         card.addView(subView, subLp);
 
-        card.setOnClickListener(v ->
-            android.widget.Toast.makeText(getParentActivity(),
-                title + " — coming soon", android.widget.Toast.LENGTH_SHORT).show()
-        );
+        card.setOnClickListener(v -> {
+            if (catId == 1) {
+                presentFragment(new ElliGramGeneralSettingsActivity());
+            } else {
+                android.widget.Toast.makeText(getParentActivity(),
+                    title + " — coming soon", android.widget.Toast.LENGTH_SHORT).show();
+            }
+        });
         return card;
     }
 
