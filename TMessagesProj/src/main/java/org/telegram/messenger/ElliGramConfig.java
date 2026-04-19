@@ -14,8 +14,6 @@ public class ElliGramConfig {
     // ── Cleaner UI ────────────────────────────────────────────────────
     /** Show stories bar in chat list */
     public static final String SHOW_STORIES        = "show_stories";
-    /** Show "People Nearby" entry in Contacts */
-    public static final String SHOW_NEARBY         = "show_nearby";
     /** Show online member count in group subtitle */
     public static final String SHOW_ONLINE_COUNT   = "show_online_count";
     /** Show Gift button in profiles and channel bar */
@@ -43,7 +41,6 @@ public class ElliGramConfig {
 
     // Convenience helpers (default = true = show everything like stock TG)
     public static boolean showStories()      { return get(SHOW_STORIES,      true); }
-    public static boolean showNearby()       { return get(SHOW_NEARBY,       true); }
     public static boolean showOnlineCount()  { return get(SHOW_ONLINE_COUNT, true); }
     public static boolean showGiftButton()   { return get(SHOW_GIFT_BUTTON,  true); }
     public static boolean showBoostButton()  { return get(SHOW_BOOST_BUTTON, true); }

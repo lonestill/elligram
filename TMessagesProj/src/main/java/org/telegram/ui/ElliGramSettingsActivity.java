@@ -135,13 +135,14 @@ public class ElliGramSettingsActivity extends BaseFragment {
     }
 
     // ── Category grid 2×3 ────────────────────────────────────────────
+    // { iconRes, title, subtitle, colorTop, colorBottom, catId }
     private static final Object[][] CAT = {
-        {"⚙️", "General",    "Ghost, ads, stories...", 0xFF3D8BFF, 0xFF2462D4, 1},
-        {"\uD83C\uDFA8", "Appearance", "Themes, fonts",          0xFFB659FF, 0xFF7C4DFF, 2},
-        {"\uD83D\uDCAC", "Chats",      "Formatting, bubbles",    0xFF4CAF50, 0xFF2E7D32, 3},
-        {"\uD83D\uDD12", "Privacy",    "Duress, fake seen",      0xFFFF5252, 0xFFD32F2F, 4},
-        {"\uD83E\uDD16", "Automation", "Auto-reply, schedule",   0xFFFF9800, 0xFFF57C00, 5},
-        {"\uD83D\uDCCA", "Statistics", "Usage, activity",        0xFF00BCD4, 0xFF0097A7, 6},
+        {R.drawable.settings_chat,     "General",    "Stories, ads, online...", 0xFF3D8BFF, 0xFF2462D4, 1},
+        {R.drawable.settings_security,  "Appearance", "Coming soon",             0xFFB659FF, 0xFF7C4DFF, 2},
+        {R.drawable.settings_folders,  "Chats",      "Coming soon",             0xFF4CAF50, 0xFF2E7D32, 3},
+        {R.drawable.settings_privacy,  "Privacy",    "Coming soon",             0xFFFF5252, 0xFFD32F2F, 4},
+        {R.drawable.settings_language, "Automation", "Coming soon",             0xFFFF9800, 0xFFF57C00, 5},
+        {R.drawable.settings_data,     "Statistics", "Coming soon",             0xFF00BCD4, 0xFF0097A7, 6},
     };
 
     private View buildGrid(Context context) {
@@ -154,7 +155,7 @@ public class ElliGramSettingsActivity extends BaseFragment {
 
             for (int col = 0; col < 2; col++) {
                 Object[] d = CAT[row * 2 + col];
-                View card = buildCatCard(context, (String)d[0], (String)d[1],
+                View card = buildCatCard(context, (int)d[0], (String)d[1],
                         (String)d[2], (int)d[3], (int)d[4], (int)d[5]);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, LayoutHelper.WRAP_CONTENT, 1f);
                 if (col == 0) lp.rightMargin = dp(8);
@@ -169,7 +170,7 @@ public class ElliGramSettingsActivity extends BaseFragment {
         return grid;
     }
 
-    private View buildCatCard(Context context, String emoji, String title,
+    private View buildCatCard(Context context, int iconRes, String title,
                                String sub, int colorTop, int colorBot, int catId) {
         LinearLayout card = new LinearLayout(context);
         card.setOrientation(LinearLayout.VERTICAL);
@@ -177,16 +178,19 @@ public class ElliGramSettingsActivity extends BaseFragment {
         card.setBackground(roundRect(Theme.getColor(Theme.key_windowBackgroundWhite), 14));
         card.setClipToOutline(true);
 
-        TextView iconView = new TextView(context);
-        iconView.setText(emoji);
-        iconView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22);
-        iconView.setGravity(Gravity.CENTER);
+        // Gradient background with icon
+        FrameLayout iconWrap = new FrameLayout(context);
         GradientDrawable iconBg = new GradientDrawable(
                 GradientDrawable.Orientation.TL_BR, new int[]{colorTop, colorBot});
         iconBg.setCornerRadius(dp(12));
-        iconView.setBackground(iconBg);
-        iconView.setClipToOutline(true);
-        card.addView(iconView, dp(44), dp(44));
+        iconWrap.setBackground(iconBg);
+        iconWrap.setClipToOutline(true);
+        ImageView iconView = new ImageView(context);
+        iconView.setImageResource(iconRes);
+        iconView.setColorFilter(0xFFFFFFFF);
+        iconView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        iconWrap.addView(iconView, LayoutHelper.createFrame(28, 28, Gravity.CENTER));
+        card.addView(iconWrap, dp(44), dp(44));
 
         TextView titleView = new TextView(context);
         titleView.setText(title);
